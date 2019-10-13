@@ -93,9 +93,14 @@ if (count($results->getItems()) == 0) {
 } else {
   print "Logins:\n";
   foreach ($results->getItems() as $activity) {
-    printf("%s: %s (%s)\n", $activity->getId()->getTime(),
-        $activity->getActor()->getEmail(),
-        $activity->getEvents()[0]->getName());
+      // iterate over events in activity to get email
+      foreach ($activity->getEvents() as $event) {
+          printf("%s: %s (%s)\n", $activity->getId()->getTime(),
+            $event->getParameters()->getValue()
+          );
+      }    
   }
 }
 // [END admin_sdk_reports_quickstart]
+
+
