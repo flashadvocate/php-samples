@@ -92,8 +92,10 @@ if (count($results->getItems()) == 0) {
   print "No logins found.\n";
 } else {
   print "Logins:\n";
+  /* @var $activity Google_Service_Reports_Activity */
   foreach ($results->getItems() as $activity) {
       // iterate over events in activity to get email
+      /* @var $event Google_Service_Reports_ActivityEvents */
       foreach ($activity->getEvents() as $event) {
           printf("%s: %s (%s)\n", $activity->getId()->getTime(),
             $event->getParameters()->getValue()
